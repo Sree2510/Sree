@@ -1,0 +1,50 @@
+#include<stdio.h>
+float initial_balance = 1000; // global variable
+void deposit(int amount){
+     printf("\nEnter the amount to deposit:\n");
+     scanf("%d",&amount);
+    initial_balance += amount;
+    printf("Your Amount is deposited successfully:\n");
+}
+void withdraw(int amount){
+    if(amount>initial_balance)
+    {
+        printf("Insufficient Balance:\n");
+    }
+    else{
+        initial_balance -= amount;
+    }
+}
+void check_balance(){
+    printf("Your available balance: %.2f",initial_balance);
+}
+void main()
+{
+        int choice,amount;
+        char second_choice;
+    do{
+        printf("Press 1 to deposit the amount:\n");
+        printf("Press 2 to withdraw the amount:\n");
+        printf("Press 3 to check the available balance:\n");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:
+                deposit(amount);
+                check_balance();
+                break;
+            case 2:
+                printf("\nEnter the amount to withdraw:\n");
+                scanf("%d",&amount);
+                withdraw(amount);
+                check_balance();
+                break;
+            case 3:
+                check_balance();
+                break;
+            default:
+                printf("\nInvalid choice");
+        }
+        printf("\nDo you want to continue(y/n):\n");
+        scanf("%s",&second_choice);
+    }while(second_choice == 'y');
+}
